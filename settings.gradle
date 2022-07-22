@@ -1,0 +1,5 @@
+
+rootProject.name = "Mayday"
+include ':app'
+include ':xLibs'
+include ':business'

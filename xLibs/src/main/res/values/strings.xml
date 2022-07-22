@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Summertime Camera</string>
+
+    <string name="base_url">https://zhoushang.space/</string>
+
+    <string name="lovin_app_key">XPxZx2V96_iG7pvM4Tnv9Ci2gnTcttWt7PvgH4gkf-2zoyye4GosxpTV1dPNCvzgQPmf6oQpX9k-pQriMIx7HR</string>
+    <string name="lovin_insert_ad_id">b5c576ac0405655b</string>
+    <string name="lovin_native_ad_id">248bd9c71e9f4ff8</string>
+    <string name="lovin_banner_ad_id">3b3299a0fa7a5b15</string>
+
+    <string name="top_on_app_id">a627a31707097a</string>0
+    <string name="top_on_app_key">5ce813fb93a147bb3e537c1239e4a932</string>
+    <string name="top_on_open_ad_id">b627a318085d7e</string>
+
+</resources>
