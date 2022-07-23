@@ -36,6 +36,8 @@ class SlimmingFragment : BaseFragment<FragmentSlimmingBinding>(FragmentSlimmingB
         fragmentBinding.save.setOnClickListener {
             if (TextUtils.isEmpty(imageUrl)){
                 (requireActivity() as AppCompatActivity).showSelectDialog()
+            }else{
+                (requireActivity() as AppCompatActivity).showSaveDialog()
             }
         }
     }

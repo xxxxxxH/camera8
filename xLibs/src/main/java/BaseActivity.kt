@@ -36,12 +36,12 @@ abstract class BaseActivity<T : ViewBinding> : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         activityBinding = getViewBinding()
         setContentView(binding.root)
-        openAd = xApp.instance.openAd(openAdListener())
+        openAd = xApp.instance.openAd(OpenAdListener())
         openAd.loadAd()
         openAd.loge("xxxxxxHopenAd")
 
         lovinInterstitialAd = xApp.instance.lovinInterstitialAd(this)
-        lovinInterstitialAd.setListener(lovinInsterListener())
+        lovinInterstitialAd.setListener(LovinInsterListener())
         lovinInterstitialAd.loadAd()
         lovinInterstitialAd.loge(lovinInterstitialAd)
         initialization()
@@ -92,42 +92,42 @@ abstract class BaseActivity<T : ViewBinding> : AppCompatActivity() {
         }
     }
 
-    inner class openAdListener : ATSplashAdListener {
+    inner class OpenAdListener : ATSplashAdListener {
         override fun onAdLoaded() {
-            "onAdLoaded".loge("xxxxxxHopenAdonAdLoaded")
+            "xxxxxxH".loge("openAdonAdLoaded")
         }
 
         override fun onNoAdError(p0: AdError?) {
-            "$p0".loge("xxxxxxHopenAdonNoAdError")
+            "xxxxxxH".loge("openAdonNoAdError $p0")
             lifecycleScope.launch(Dispatchers.IO) {
                 delay(3000)
                 openAd.onDestory()
-                openAd = xApp.instance.openAd(this@openAdListener)
+                openAd = xApp.instance.openAd(this@OpenAdListener)
                 openAd.loadAd()
             }
         }
 
         override fun onAdShow(p0: ATAdInfo?) {
-            "onAdShow".loge("xxxxxxHopenAdonAdShow")
+            "xxxxxxH".loge("openAdonAdShow")
         }
 
         override fun onAdClick(p0: ATAdInfo?) {
-            "onAdClick".loge("xxxxxxHopenAdonAdClick")
+            "xxxxxxH".loge("openAdonAdClick")
         }
 
         override fun onAdDismiss(p0: ATAdInfo?, p1: IATSplashEyeAd?) {
-            "onAdDismiss".loge("xxxxxxHopenAdonAdDismiss")
+            "xxxxxxH".loge("openAdonAdDismiss")
             onSplashAdLoaded()
             lifecycleScope.launch(Dispatchers.IO) {
                 delay(3000)
                 openAd.onDestory()
-                openAd = xApp.instance.openAd(this@openAdListener)
+                openAd = xApp.instance.openAd(this@OpenAdListener)
                 openAd.loadAd()
             }
         }
     }
 
-    inner class lovinInsterListener : MaxAdListener {
+    inner class LovinInsterListener : MaxAdListener {
         override fun onAdLoaded(ad: MaxAd?) {
             "xxxxxxH".loge("lovinonInsertAdLoaded")
             lovinInterstitialAd.loge(lovinInterstitialAd)
@@ -144,7 +144,7 @@ abstract class BaseActivity<T : ViewBinding> : AppCompatActivity() {
                 lovinInterstitialAd.destroy()
                 delay(3000)
                 lovinInterstitialAd = xApp.instance.lovinInterstitialAd(this@BaseActivity)
-                lovinInterstitialAd.setListener(this@lovinInsterListener)
+                lovinInterstitialAd.setListener(this@LovinInsterListener)
                 lovinInterstitialAd.loadAd()
                 lovinInterstitialAd.loge(lovinInterstitialAd)
             }
@@ -161,7 +161,7 @@ abstract class BaseActivity<T : ViewBinding> : AppCompatActivity() {
                 lovinInterstitialAd.destroy()
                 delay(3000)
                 lovinInterstitialAd = xApp.instance.lovinInterstitialAd(this@BaseActivity)
-                lovinInterstitialAd.setListener(this@lovinInsterListener)
+                lovinInterstitialAd.setListener(this@LovinInsterListener)
                 lovinInterstitialAd.loadAd()
                 lovinInterstitialAd.loge(lovinInterstitialAd)
             }
@@ -173,7 +173,7 @@ abstract class BaseActivity<T : ViewBinding> : AppCompatActivity() {
                 lovinInterstitialAd.destroy()
                 delay(3000)
                 lovinInterstitialAd = xApp.instance.lovinInterstitialAd(this@BaseActivity)
-                lovinInterstitialAd.setListener(this@lovinInsterListener)
+                lovinInterstitialAd.setListener(this@LovinInsterListener)
                 lovinInterstitialAd.loadAd()
             }
         }

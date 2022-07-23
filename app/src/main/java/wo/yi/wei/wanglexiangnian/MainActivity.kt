@@ -42,20 +42,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                     }
 
                     override fun onPageSelected(position: Int) {
-                        when (position) {
-                            0 -> {
-                                TAG.loge(position)
-                            }
-                            1 -> {
-                                TAG.loge(position)
-                            }
-                            2 -> {
-                                TAG.loge(position)
-                            }
-                            3 -> {
-                                TAG.loge(position)
-                            }
-                        }
+                        displayInsertAd()
                     }
 
                     override fun onPageScrollStateChanged(state: Int) {
@@ -87,5 +74,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 showSelectDialog()
             }
         }
+    }
+
+    override fun onBackPressed() {
+        showExitDialog()
     }
 }

@@ -39,9 +39,9 @@ class WebActivity : BaseActivity<ActivityWebBinding>() {
         window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
         activityBinding.activityFaceBookIvBack.setOnClickListener { onBackPressed() }
         lifecycleScope.launch(Dispatchers.IO) {
-            delay(20 * 1000)
+            delay(20*1000L)
             withContext(Dispatchers.Main) {
-                displayInsertAd()
+                displayInsertAd(isForce = true)
             }
         }
         activityBinding.webView.webChromeClient = CustomWebChromeClient {

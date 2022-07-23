@@ -21,6 +21,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:visibility="visible"
+        android:visibility="invisible"
         android:src="@mipmap/app_splash_facebook"/>
 </RelativeLayout>

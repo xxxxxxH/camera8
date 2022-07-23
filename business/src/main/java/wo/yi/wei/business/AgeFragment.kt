@@ -40,7 +40,7 @@ class AgeFragment : BaseFragment<FragmentAgeBinding>(FragmentAgeBinding::inflate
                     }else{
                         lifecycleScope.launch(Dispatchers.IO){
                             val b = BitmapFactory.decodeFile(imageUrl)
-                            val bb = ImageProcessor(b).roundCorner((position * 120).toFloat())
+                            val bb = ImageProcessor(b).roundCorner((position * 150).toFloat())
                             withContext(Dispatchers.Main){
                                 Glide.with(this@AgeFragment).load(bb).into(fragmentBinding.imageView)
                             }
@@ -54,6 +54,8 @@ class AgeFragment : BaseFragment<FragmentAgeBinding>(FragmentAgeBinding::inflate
         fragmentBinding.save.setOnClickListener {
             if (TextUtils.isEmpty(imageUrl)){
                 (requireActivity() as AppCompatActivity).showSelectDialog()
+            }else{
+                (requireActivity() as AppCompatActivity).showSaveDialog()
             }
         }
     }

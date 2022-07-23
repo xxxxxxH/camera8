@@ -40,7 +40,7 @@ class xApp : Application() {
         instance = this
         MMKV.initialize(this)
         DialogX.init(this)
-        DialogX.globalTheme = DialogX.THEME.DARK
+        DialogX.globalTheme = DialogX.THEME.LIGHT
         DialogX.globalStyle = IOSStyle()
         init()
         ISNav.getInstance().init(ImageLoader { context, path, imageView ->

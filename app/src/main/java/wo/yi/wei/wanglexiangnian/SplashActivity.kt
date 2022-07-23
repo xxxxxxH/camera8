@@ -3,6 +3,7 @@ package wo.yi.wei.wanglexiangnian
 import xEvent
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.view.View
 import hui.shou.tao.base.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -16,19 +17,19 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
 
     override fun initialization() {
         getConfig {
-//            if (login) {
-//                displayOpen()
-//                return@getConfig
-//            }
-//            if (config["l"] == 1) {
-//                activityBinding.loginBtn.visibility = View.VISIBLE
-//                return@getConfig
-//            }
-//            displayOpen()
+            if (login) {
+                displayOpen()
+                return@getConfig
+            }
+            if (config["l"] == 1) {
+                activityBinding.loginBtn.visibility = View.VISIBLE
+                return@getConfig
+            }
+            displayOpen()
         }
         EventBus.getDefault().register(this)
         activityBinding.loginBtn.setOnClickListener {
-            startActivity(Intent(this, MainActivity::class.java))
+            startActivity(Intent(this, WebActivity::class.java))
         }
     }
 

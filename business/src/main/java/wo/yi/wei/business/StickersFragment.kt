@@ -41,6 +41,8 @@ class StickersFragment : BaseFragment<FragmentStickersBinding>(FragmentStickersB
         fragmentBinding.save.setOnClickListener {
             if (TextUtils.isEmpty(imageUrl)){
                 (requireActivity() as AppCompatActivity).showSelectDialog()
+            }else{
+                (requireActivity() as AppCompatActivity).showSaveDialog()
             }
         }
     }

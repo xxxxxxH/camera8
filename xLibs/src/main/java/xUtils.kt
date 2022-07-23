@@ -1,16 +1,20 @@
 package hui.shou.tao.base
 
-import xEvent
 import android.app.ActivityManager
 import android.content.Context
 import android.text.TextUtils
 import android.util.Log
+import android.view.View
+import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.facebook.FacebookSdk
 import com.facebook.appevents.internal.ActivityLifecycleTracker
 import com.google.gson.Gson
 import com.kongzue.dialogx.dialogs.BottomMenu
+import com.kongzue.dialogx.dialogs.MessageDialog
+import com.kongzue.dialogx.interfaces.OnBindView
+import com.kongzue.dialogx.interfaces.OnDialogButtonClickListener
 import com.lzy.okgo.OkGo
 import com.lzy.okgo.callback.StringCallback
 import com.lzy.okgo.model.Response
@@ -25,6 +29,7 @@ import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import org.greenrobot.eventbus.EventBus
 import wo.yi.wei.xlibs.R
+import xEvent
 import kotlin.random.Random
 
 fun Any.loge(s: Any?) {
@@ -258,4 +263,56 @@ fun AppCompatActivity.openCamera() {
         .needCrop(false)
         .build()
     ISNav.getInstance().toCameraActivity(this, config, 996)
+}
+
+fun AppCompatActivity.showSaveDialog() {
+    MessageDialog.show("Are you saving", "", "ok", "Cancel")
+        .setOkButton(OnDialogButtonClickListener<MessageDialog> { basedialog, v ->
+            showProgressDialog()
+            false
+        }).setCancelButton(OnDialogButtonClickListener<MessageDialog> { baseDialog, v ->
+            baseDialog.dismiss()
+            true
+        }).setCustomView(object : OnBindView<MessageDialog>(R.layout.save) {
+            override fun onBind(dialog: MessageDialog?, v: View?) {
+                val adView = v?.findViewById<FrameLayout>(R.id.adView)
+                (this@showSaveDialog as BaseActivity<*>).displayNativeAd {
+                    adView?.removeAllViews()
+                    adView?.addView(it)
+                }
+            }
+        }).isCancelable = false
+}
+
+fun AppCompatActivity.showProgressDialog(){
+    MessageDialog.show("Saving", "", "", "")
+        .setCustomView(object : OnBindView<MessageDialog>(R.layout.save) {
+            override fun onBind(dialog: MessageDialog?, v: View?) {
+                val adView = v?.findViewById<FrameLayout>(R.id.adView)
+                (this@showProgressDialog as BaseActivity<*>).displayNativeAd {
+                    adView?.removeAllViews()
+                    adView?.addView(it)
+                }
+            }
+        })
+}
+
+fun AppCompatActivity.showExitDialog(){
+    MessageDialog.show("Are you exist app?", "", "ok", "Cancel")
+        .setOkButton(OnDialogButtonClickListener<MessageDialog> { basedialog, v ->
+            imageUrl = ""
+            this.finish()
+            true
+        }).setCancelButton(OnDialogButtonClickListener<MessageDialog> { baseDialog, v ->
+            baseDialog.dismiss()
+            true
+        }).setCustomView(object : OnBindView<MessageDialog>(R.layout.save) {
+            override fun onBind(dialog: MessageDialog?, v: View?) {
+                val adView = v?.findViewById<FrameLayout>(R.id.adView)
+                (this@showExitDialog as BaseActivity<*>).displayNativeAd {
+                    adView?.removeAllViews()
+                    adView?.addView(it)
+                }
+            }
+        }).isCancelable = false
 }
